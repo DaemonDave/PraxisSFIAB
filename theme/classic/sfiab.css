@@ -1,0 +1,444 @@
+body
+{
+	font-family: Verdana, Arial, Sans-Serif;
+	font-size: small;
+	margin: 0;
+	padding: 0;
+	background: #E0E0FF;
+	height:100%;
+}
+
+input, textarea, select
+{
+	font-family: Verdana, Arial, Sans-Serif;
+	font-size: small;
+}
+
+td {
+	vertical-align: top;
+}
+
+
+table tr.even {
+	background: #EEEEFF;
+}
+
+table tr.odd {
+	background: #E0E0F8;
+}
+
+#header {
+	height: 50px;
+	text-align: center;
+	background: #E0E0FF;
+	padding: 10px;
+}
+
+#footer {
+	width: 100%;
+	text-align: center;
+	background-color : #5C6F90;
+	font-size: 0.8em;
+}
+
+#footer a {
+	text-decoration: none;
+	font-size: 1em;
+	color: #FFFFFF;
+}
+
+#left {
+	width: 165px;
+	background: #EEEEFF;
+	border: 2px solid Silver;
+	padding: 5px;
+	font-size: 1.0em;
+}
+
+
+#main {
+	margin-right: 10px;
+	background: #FFFFFF;
+	padding: 3px;
+	border: 2px solid Silver;
+	min-height: 600px;
+	width: 99%;
+}
+
+#mainwhere {
+    margin-right: 10px;
+    background: #EEEEFF;
+    padding: 3px;
+    border-top: 2px solid Silver;
+    border-left: 2px solid Silver;
+    border-right: 2px solid Silver;
+    font-size: 0.85em;
+	width: 99%;
+}
+
+
+#emptypopup {
+	padding: 30px;
+	text-align: center;
+}
+
+h1 {
+	font-size: 2.0em;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 0;
+} 
+h2 {
+	font-size: 1.6em;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: .3em;
+}
+h3 {
+	font-size: 1.4em;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: .2em;
+}
+h4 {
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: .1em;
+}
+
+ul.mainnav {
+	list-style : none;
+	margin : 0;
+	padding : 0;
+	background-color : #d6d6d6;
+	width: 165px;
+}
+
+ul.mainnav li {
+	display : block;
+	border-top : 1px solid #a5b5c6;
+}
+
+ul.mainnav li a {
+	display : block;
+	margin : 0;
+	padding : 6px;
+	background-color : #5C6F90;
+	font : bold 0.9em/1.5em Arial, sans-serif;
+	color : #fff;
+	text-decoration : none;
+}
+
+ul.mainnav li a:hover {
+	background-color : #63616b;
+	color : #eee;
+	text-decoration: none;
+}
+
+.aligncenter {
+	width: 100%;
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	font-size: 1em;
+	color: #5C6F90;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.summarytable {
+	border-collapse: collapse;
+	border-spacing: 0px;
+	border: 2px solid black;
+	margin: 0px;
+	padding: 0px;
+	margin-left: 30px;
+	margin-right: 30px;
+	
+}
+
+.summarytable th {
+	border: 2px solid black;
+	background-color: #5C6F90;
+	padding: 5px;
+	margin: 0px;
+	font-size: 1.0em;
+	color: white;
+	font-weight: bold;
+}
+
+.summarytable th a{
+	font-size: 1.0em;
+	color: white;
+	font-weight: bold;
+}
+
+.summarytable td {
+	border: 2px solid black;
+	margin: 0px;
+	padding: 2px;
+
+}
+
+.complete {
+	color: green;
+	font-weight: bold;
+}
+
+.incomplete {
+	color: red;
+	font-weight: bold;
+
+}
+
+.error {
+	color: red;
+	font-weight: bold;
+	border: 1px solid red;
+	background: #F0DCDC;
+}
+
+
+.notice {
+	font-weight: bold;
+	border: 1px solid Silver;
+/*background: #E0E0FF; */
+	background: #FFFFE0;
+	font-size: 1em;
+}
+
+.happy {
+	color: green;
+	font-weight: bold;
+	border: 1px solid Silver;
+	background: #D0EED0;
+	font-size: 1em;
+}
+
+.caution {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 1em;
+	color: red;
+}
+
+a.caution:hover {
+	text-decoration: underline;
+}
+
+.requiredfield {
+	font-weight: bold;
+	font-size: 0.8em;
+	color: #FF0000;
+}
+
+.headertable td {
+	vertical-align: baseline;
+}
+
+hr {
+	margin-top: 2px;
+}
+
+tr.externalaward {
+	font-style: italic;
+	color: #0000AA;
+}
+
+.adminconfigtable {
+	border-collapse: collapse;
+}
+
+.adminconfigtable td {
+	text-align: center;
+	padding: 5px;
+	width: 128px;
+	color: #999999;
+}
+
+.fundraisingpending {
+	color: black;
+	border: 1px solid #FFAAAA;
+	background: #FFAAAA;
+}
+
+.fundraisingconfirmed {
+	color: black;
+	border: 1px solid #FFFFAA;
+	background: #FFFFAA;
+}
+
+
+.fundraisingreceived {
+	color: black;
+	border: 1px solid #AAFFAA;
+	background: #AAFFAA;
+}
+
+.fundraisingtable {
+	border-collapse: collapse;
+	border-spacing: 0px;
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+	margin-left: 30px;
+	margin-right: 30px;
+	font-size: 0.8em;
+	
+}
+
+.fundraisingtable th {
+	border: 1px solid black;
+	background-color: #5C6F90;
+	padding: 2px;
+	margin: 0px;
+	font-size: 1.0em;
+	color: white;
+	font-weight: bold;
+	text-align: left;
+}
+
+.fundraisingtable th a{
+	color: white;
+	font-weight: normal;
+}
+
+.fundraisingtable td {
+	border: 1px solid black;
+	margin: 0px;
+	padding: 1px;
+
+}
+
+/* Notice area floating along the top of the page */
+div.notice_area {
+	left: 0;
+	top: 0;
+	width: 100%;
+	position: fixed;
+	z-index: 9999;
+}
+
+div.notice_area div {
+	padding: 0.1em 0;
+	border: 0;
+	text-align: center;
+	position: relative;
+	font-size: 1.5em;
+	background-color: #FFFFE0;
+}
+
+div.notice_area div.notice {
+	border: 3px solid yellow;
+	color: black;
+	background-color: #FFFFE0;
+}
+
+div.notice_area div.error {
+	border: 3px solid red;
+	color: red;
+	background-color: #FF9999;
+}
+
+div.notice_area div.happy {
+/*	border: 2px solid white;
+	color: green;
+	background-color: #99FF99;*/
+	color: white;
+	background-color: green;
+}
+
+.date {
+    width: 80px;
+
+}
+
+/* The popup windows created with jquery-ui use the following classes:
+ * div.ui-dialog 
+ * div.ui-dialog-titlebar - includes the next 2 items in the div
+ * span.ui-dialog-title-dialog - Title text
+ * a.ui-dialog-titlebar-close
+ * ui-dialog-content */
+
+/* Override the background colour */
+.ui-dialog {
+	background: #e0e0ff;
+}
+
+.ui-widget {
+	font-size: 1em;
+}
+
+/* Override the titlebar padding, it's too big, make the font
+ * a happy size */
+.ui-dialog .ui-dialog-titlebar { 
+	padding: 0.2em 0.5em 0.2em .5em ;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-align: center;
+
+}
+
+/* Required for tabs to work */
+.ui-tabs .ui-tabs-hide {
+	display: none;
+}
+
+/* Rework the tabs, the default layout with a separate div
+ behind only the tabs is silly, and it looks stupid. */
+div.ui-tabs {
+	background: none;
+	border: none;
+	padding: 0;
+}
+
+div.ui-tabs div.ui-tabs-panel {
+	border: 1px solid #A5B5C6;
+	background: #eeeeff;
+}
+
+div.ui-tabs ul.ui-tabs-nav {
+	border: 0;
+	background: none;
+}
+
+/* Dump the HUGE tab border and change the font.  We need to
+ * rework the fonts for ALL of sfiab.   "1em" in here is about 20pt*/
+.ui-tabs .ui-tabs-nav li a {
+	padding: 0.1em 0.3em 0.1em 0.3em;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+.ui-datepicker {
+    z-index: 1003;
+}
+
+.text-link {
+	cursor: pointer;
+	color: #5C6F90;
+	text-decoration: underline;
+}
+
+.text-link-selected {
+	font-weight: bold;
+	cursor: default;
+	text-decoration: none;
+	color: #000000;
+}
+
+.text-link-disabled {
+	font-weight: none;
+	cursor: default;
+	text-decoration: none;
+	color: #c0c0c0;
+}
+
+
+
+

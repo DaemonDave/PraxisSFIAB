@@ -1,0 +1,10 @@
+CREATE TABLE `cms` (
+	`id` INT NOT NULL AUTO_INCREMENT ,
+	`filename` VARCHAR( 128 ) NOT NULL ,
+	`dt` DATETIME NOT NULL ,
+	`lang` VARCHAR( 2 ) NOT NULL ,
+	`title` VARCHAR( 128 ) NOT NULL ,
+	`text` TEXT NOT NULL ,
+	`showlogo` BOOL DEFAULT '0' NOT NULL ,
+	PRIMARY KEY ( `id` )
+) TYPE = MYISAM ;

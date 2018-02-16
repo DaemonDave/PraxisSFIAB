@@ -1,0 +1,2 @@
+INSERT INTO `signaturepage` (`id`, `name`, `use`, `text`) VALUES (3, 'teacherdeclaration', 0, 'The following section is to be read and signed by the teacher.\r\n\r\nI certify that:\r\n - The preparation of this project is mainly the student(s)\' own work.\r\n - The student(s) have read the rules and regulations and agree to abide by them.\r\n - I agree that the decision of the judges will be final.');
+

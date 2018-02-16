@@ -1,0 +1,2 @@
+INSERT INTO `config` ( `var` , `val` , `description` , `year` ) VALUES ( 'participant_student_personal', 'yes', 'Collect personal information about the students, such as phone number, address, gender, etc.', '-1');
+INSERT INTO `config` ( `var` , `val` , `description` , `year` ) VALUES ( 'participant_student_personal', 'yes', 'Collect personal information about the students, such as phone number, address, gender, etc.', '2006');

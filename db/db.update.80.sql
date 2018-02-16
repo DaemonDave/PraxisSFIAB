@@ -1,0 +1,2 @@
+INSERT INTO `pagetext` ( `id` , `textname` , `text` , `year` , `lastupdate` ) VALUES ( '', 'register_volunteer_invite', 'Thank you for volunteering for the fair.  Volunteer registration is by invitation only.<br /><br />Please contact the fair and request to be invited as a volunteer.  We will then send you an email with instructions on how to complete your volunteer registration.<br /><br />If you have been invited already, you need to login using the same email address that you were invited with.', '-1', '');
+

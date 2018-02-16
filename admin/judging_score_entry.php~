@@ -1,0 +1,154 @@
+<?
+/* 
+   This file is part of the 'Science Fair In A Box' project
+   SFIAB Website: http://www.sfiab.ca
+
+   Copyright (C) 2005-2006 Sci-Tech Ontario Inc <info@scitechontario.org>
+   Copyright (C) 2005-2006 James Grant <james@lightbox.org>
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public
+   License as published by the Free Software Foundation, version 2.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
+*/
+?>
+<?
+ require("../common.inc.php");
+ require_once("../user.inc.php");
+ require_once("judges.inc.php");
+ user_auth_required('committee', 'admin');
+
+ if($_GET['year']) $year=$_GET['year'];
+ else $year=$config['FAIRYEAR'];
+
+ if($_GET['csv'] == 'yes') {
+	header("Content-type: text/csv");
+	header("Cache-Control: no-cache");
+	header("Content-disposition: inline; filename=judging_scores.csv");
+ } else {
+ 	send_header("Judging Score Entry",
+ 			array('Committee Main' => 'committee_main.php',
+				'Administration' => 'admin/index.php')
+				);
+ }
+ ?>
+<?
+//
+/// MODIFICATION DRE 2018
+//
+// access projects by category
+$q=mysql_query("SELECT * FROM projectcategories WHERE year='".$config['FAIRYEAR']."' ORDER BY id");
+// load them into an array of cats
+while($r=mysql_fetch_object($q))
+	$cats[$r->id]=$r->category;
+// access projects by division
+$q=mysql_query("SELECT * FROM projectdivisions WHERE year='".$config['FAIRYEAR']."' ORDER BY id");
+// access divisions under as arrays of array
+while($r=mysql_fetch_object($q))
+	$divs[$r->id]=$r->division;
+
+$ORDERBY="projects.projectcategories_id, projects.projectdivisions_id, projects.projectnumber";
+
+	$q=mysql_query("SELECT  registrations.id AS reg_id,
+				registrations.num AS reg_num,
+				projects.id as projectid,
+				projects.title,
+				projects.projectnumber,
+				projects.projectcategories_id,
+				projects.projectdivisions_id,
+				judges_teams_id as res_team_id,
+				avg(score) as score, 
+				avg(score + (SELECT 70-avg(score) 
+				             FROM judges_teams_timeslots_projects_link 
+										 WHERE judges_teams_id = res_team_id))
+				    AS norm_score
+			FROM
+				registrations
+				left outer join projects on projects.registrations_id=registrations.id
+				left outer join judges_teams_timeslots_projects_link on projects.id=judges_teams_timeslots_projects_link.projects_id
+			WHERE
+				registrations.year='".$config['FAIRYEAR']."' "
+				. getJudgingEligibilityCode() . " 
+			GROUP BY projectid
+			ORDER BY
+				$ORDERBY
+			");
+		echo mysql_error();
+	
+	if($_GET['csv'] != 'yes') 
+	{
+		echo "<a href='judging_score_entry.php?csv=yes'>" . i18n("Generate CSV Report") . "</a>\n";
+		echo "<table class=\"tableview\">";
+		echo "<tr>";
+		echo  "<th>".i18n("Proj Num")."</th>";
+		echo  "<th>".i18n("Project Title")."</th>";
+		echo  "<th>".i18n("Age Category")."</th>";
+		echo  "<th>".i18n("Division")."</th>";
+		echo  "<th>".i18n("Score")."</th>";
+		echo  "<th>".i18n("Normalized Score")."</th>";
+		echo  "<th>".i18n("Action")."</th>";
+		echo "</tr>";
+	} else {
+		echo "Project #\tTitle\tCategory\tDivision\tScore\tNormalized Scores\tJudge Name\tJudges Score\n";
+	}
+
+	while($r=mysql_fetch_object($q))
+	{
+		if($_GET['csv'] == 'yes') 
+		{
+			echo "$r->projectnumber \t $r->title \t" . $cats[$r->projectcategories_id] . "\t" . $divs[$r->projectdivisions_id] . " \t $r->score \t $r->norm_score ";
+			$p=mysql_query("SELECT judges_teams_timeslots_projects_link.judges_teams_id, 
+								    				 score, 
+												     judges_teams.num
+			                FROM judges_teams_timeslots_projects_link, 
+									         judges_teams
+			                WHERE judges_teams_timeslots_projects_link.judges_teams_id = judges_teams.id 
+									          AND projects_id = ".mysql_real_escape_string($r->projectid)." ORDER BY judges_teams_id"
+								);
+			echo mysql_error();
+			while($s=mysql_fetch_object($p)) 
+			{
+				$team=getJudgingTeam($s->judges_teams_id);
+				$teamNames=array_map("teamMemberToName", $team['members']);
+				echo "\t " . implode(", ", $teamNames) . " \t $s->score";
+			}
+			echo "\n";
+
+		} 
+		else
+		{
+			echo "<tr>";
+			echo "<td>$r->projectnumber</td>\n";
+			echo "<td>$r->title</td>\n";
+
+			echo "<td>".i18n($cats[$r->projectcategories_id])."</td>\n";
+			echo "<td>".i18n($divs[$r->projectdivisions_id])."</td>\n";
+			echo "<td>" . number_format($r->score, 2) . "</td>\n";
+			echo "<td>" . number_format($r->norm_score, 2) . "</td>\n";
+			echo "<td align=\"center\">";
+			if($year==$config['FAIRYEAR']) 
+			{
+				echo "<a href=\"judging_score_edit.php?projectid=$r->projectid\">";
+				echo i18n("Edit Scores");
+				echo "</a>";
+			}
+			echo "</td>\n";
+			echo "</tr>\n";
+		}
+	}
+	if($_GET['csv'] != 'yes') {
+		echo "</table>\n";
+		echo "<br />";
+
+ 		send_footer();
+	}
+?>

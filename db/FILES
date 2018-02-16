@@ -1,0 +1,7 @@
+db.code.version.txt	- contains the version number of the database that the code requires
+db_update.php		- will update the db to the newest version (db.code=db.db)
+
+db.update.1.sql		- the SQL commands required to update - to upgrade across multiple versions
+db.update.2.sql		- each file should be executed in sequence from the current version up.
+db.update.3.sql		- etc
+

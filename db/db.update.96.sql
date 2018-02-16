@@ -1,0 +1,1 @@
+INSERT INTO `pagetext` ( `id` , `textname` , `text` , `year` , `lastupdate` ) VALUES ( '', 'schoolaccess', 'Welcome to the School Access Page.  This page allows your school to provide several key pieces of information for the fair, as well as feedback about the schools experience with/at the fair.', '-1', '');

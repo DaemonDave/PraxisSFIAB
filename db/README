@@ -1,0 +1,10 @@
+README DRE 2018
+
+To understand what is going on in the SFIAB code, one has to appreciate 
+that the database entries evolve and the new or obsolete names for data elements means the software needs continual patching. 
+
+You need to find the latest version of a $q->XXXX data element in the db.xxx.sql or db.xxx.php updates to understand what's being stored NOW in MySQL.
+
+You can't use old code to find out what variables are sent and why/ 
+
+You can use old code for a hint as to WHEN a variable changed or is no longer present. 
