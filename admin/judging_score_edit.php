@@ -155,7 +155,7 @@
 	echo "</table>\n";
 	echo "<br />";	
 	echo "<div>";
-	echo "<input type=\"submit\" />\n";
+	echo "<input type=\"submit\" name=\"submit\" />\n";
 	echo "</div>";
 	echo "</form>\n";
 	echo "<br />";
