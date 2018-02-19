@@ -42,29 +42,36 @@
 	if(isset($_POST['submit']) ) // if we have a form
 	{
 		 // check entries for all values
-		 if(isset($_POST['score'])) // if there is a score
+		 //if(isset($_POST['score'])) // if there is a score
+                 if(isset($_POST['selector']))
 		 {
-			 $score = $_POST['score']; 
+			 $markforupdate=$_POST['selector'];
+                         $projnumber=$_POST['project'.$markforupdate.'number'];   //REMARK: Would this work?
+			 $score = $_POST['score'.$markforupdate.'number'];        //REMARK: Would this work?
+			 //$score = $_POST['score']; 
 			 // if there is data and an entry selected, then insert data
 			 // isset($_POST['selector']) && $score > 0 && 
-			 if(isset($_POST['count']))// if this isn't an accident
-			 {
+			 //if(isset($_POST['count']))// if this isn't an accident
+			 //{
 				 // get the row count
-				 $count = $_POST['count'];
+				 //$count = $_POST['count'];
 				 // inserting into column count only
-				 $q=mysql_query("UPDATE scores SET score='$score' WHERE count='$count' ");
+				 //$q=mysql_query("UPDATE scores SET score='$score' WHERE count='$count' ");
+			         $q=mysql_query("UPDATE scores SET score='$score' WHERE projectnumber='$projnumber' and year='$year' ");
 				 // check for database error
 				 if ($q == FALSE)
 				 {
 					  echo mysql_error();
 				 }
-				 else		 message_push(happy("Scorecard ".$count." selected, data inserted!!!!"));	
-			 }
-			 else // improper selection
-			 {
+				 else		 
+					 //message_push(happy("Scorecard ".$count." selected, data inserted!!!!"));	
+					 message_push(happy("Scorecard ".$projnumber." selected, data inserted!!!!"));	
+			 //}
+			 //else // improper selection
+			 //{
 					//$count = 0;
-					message_push(error("Scorecard not selected, no data inserted!!!!"));		
-			 }
+					//message_push(error("Scorecard not selected, no data inserted!!!!"));		
+			 //}
 		 }
 		 else// no score to input
 		 {
@@ -82,7 +89,7 @@
 	echo mysql_error();
 
 
-	echo "<form action=\"judging_score_edit.php\" method=\"post\">";
+	echo "<form action=\"judging_score_edit.php\" method=\"post\" accept-charset=\"UTF-8 ISO-8859-1\">";
 	echo "<input type=\"hidden\" name=\"scorecards\" value=\"" . mysql_num_rows($q) . "\"/>";
 	echo "<input type=\"hidden\" name=\"projectid\" value=\"$project_id\"/>";
 	echo "<table class=\"tableview\">";
@@ -132,7 +139,7 @@
 		}
 		echo "\n</td>\n";
 		echo "<td style=\"vertical-align: middle; text-align: center\">\n";
-		echo "<input type=\"text\" size=\"6\" maxlength=\"6\" name=\"score\" value=\"$r->score\"/>\n";
+		echo "<input type=\"text\" size=\"6\" maxlength=\"6\" name=\"score".$i."number\" value=\"$r->score\"/>\n";
 		echo "</td>\n";
 		echo "<td style=\"vertical-align: middle; text-align: center\">\n";
 		echo "<input type=\"hidden\" name=\"count".$i."\" value=\"$r->count\"/>\n";
