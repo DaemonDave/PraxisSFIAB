@@ -75,6 +75,8 @@ if($config['fairs_enable'] == 'yes' && $config['fairs_allow_login'] == 'yes')
 	echo "<b>your email is in the database so click on the correct category </b><br>";
 	echo "<b>(Participant, Judge, ...) link above, enter your email </b><br> ";
 	echo "<b>and click on the request for password.</b>  ";
+	echo "<br>";
+	echo "<a href=\"http://seab-sciencefair.com/mediawiki/index.php/WARNING_TO_MICROSOFT_OUTLOOK_AND_HOTMAIL_USERS\">".i18n(" MICROSOFT OUTLOOK AND HOTMAIL USERS: PLEASE READ").'</a>';
 
 send_footer();
 ?>
