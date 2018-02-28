@@ -403,7 +403,8 @@
 		}
 
 	}
-	if($showform) {
+	if($showform) 
+	{
 		echo "<br />";
 		echo "<br />";
 		echo i18n("Registration Number:");
@@ -433,8 +434,10 @@
 		echo "<br />";
 		$buttontext=i18n("Login");
 	}
-	else {
-		if($config['participant_registration_type']=="invite") {
+	else 
+	{
+		if($config['participant_registration_type']=="invite") 
+		{
 			echo i18n("Registration is by invitation only.  As soon as you are invited by your school or the science fair committee, you will receive a welcoming email with your Registration Number");
 			echo "<br />";
 			echo "<br />";
@@ -442,23 +445,25 @@
 			echo i18n("Please enter your email address to:");
 			echo "<ul>";
 		}
-		else {
+		else 
+		{
 			echo i18n("Please enter your email address to :");
 			echo "<ul>";
 			echo "<li>".i18n("Begin a new registration")."</li>";
 		}
-
 		echo "<li>".i18n("Continue a previously started registration")."</li>";
 		echo "<li>".i18n("Modify an existing registration")."</li>";
 		echo "</ul>";
 		echo i18n("You must enter a valid email address.  We will be emailing you information which you will need to complete the registration process!");
-		echo "<br />";
+		echo "<br />";		
+		echo i18n("If you use Microsoft Outlook or Hotmail and didn't receive an email, please <a href=\"http://seab-sciencefair.com/mediawiki/index.php/WARNING_TO_MICROSOFT_OUTLOOK_AND_HOTMAIL_USERS\">see this webpage for how to get registration email.</a> ");
 		echo "<br />";
 		$buttontext=i18n("Begin");
 	}
 
 	//only show the email login box if registration is open, or we're past the registration deadline (so they can login and view / apply for special awards).  if we're before the registration deadline then they cant create an account or login anwyays so no point in showing the box
-	if(!$datecheck->datecheckbefore) {
+	if(!$datecheck->datecheckbefore) 
+	{
 	?>
 	<form method="post" action="register_participants.php">
 	<input type="hidden" name="action" value="login" />
