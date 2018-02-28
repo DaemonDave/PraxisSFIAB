@@ -69,37 +69,41 @@
   * eventually, you'll never be able to see a login page if you're already
   * logged in. */
  $type = false;
- if(isset($_SESSION['users_type'])) {
- 	/* They're already logged in  */
- 	$type = $_SESSION['users_type'];
-	/* If they're not trying to logout, don't let them see the login page */
-	if($_GET['action'] != 'logout') {
-		message_push(error(i18n('You are already logged in, please use the [Logout] link in the upper right to logout before logging in as different user')));
-		header("location: {$type}_main.php");
-		exit;
+ if(isset($_SESSION['users_type'])) 
+ {
+		/* They're already logged in  */
+		$type = $_SESSION['users_type'];
+		/* If they're not trying to logout, don't let them see the login page */
+		if($_GET['action'] != 'logout') 
+		{
+			message_push(error(i18n('You are already logged in, please use the [Logout] link in the upper right to logout before logging in as different user')));
+			header("location: {$type}_main.php");
+			exit;
+		}
 	}
- } else {
-	$type = $_GET['type'];
-	/* user_types is in user.inc.php */
-	if(!in_array($type, $user_types)) $type = false;
- }
+	else
+	{
+		$type = $_GET['type'];
+		/* user_types is in user.inc.php */
+		if(!in_array($type, $user_types)) $type = false;
+	}
 
- $notice=$_GET['notice'];
+	$notice=$_GET['notice'];
+	$redirect = $_GET['redirect'];
+	$redirect_data = $_GET['redirectdata'];
 
- $redirect = $_GET['redirect'];
- $redirect_data = $_GET['redirectdata'];
-
- switch($redirect) {
- case 'roleadd':
-	$redirect_url = "&redirect=$redirect&redirectdata=$redirectdata";
-	break;
- case 'roleattached':
- 	$redirect_url = "&redirect=$redirect";
-	break;
- default:
- 	$redirect_url = '';
-	break;
- }
+	switch($redirect) 
+	{
+		case 'roleadd':
+			$redirect_url = "&redirect=$redirect&redirectdata=$redirectdata";
+			break;
+		case 'roleattached':
+			$redirect_url = "&redirect=$redirect";
+			break;
+		default:
+			$redirect_url = '';
+			break;
+	}
 
  switch($type) {
  case 'volunteer':
@@ -375,31 +379,23 @@
 
 	<br />
 	<div style="font-size: 0.75em;">
-	<?=i18n("If you have lost or forgotten your password, or have misplaced the email with your initial password, please <a href=\"$recover_link\">click here to recover it</a>")?>.</div><br />
+	<?=i18n("If you have lost or forgotten your password, or have misplaced the email with your initial password, please <a href=\"$recover_link\">click here to recover it</a> If you use Microsoft Outlook or Hotmail and didn't receive an email, please <a href=\"http://seab-sciencefair.com/mediawiki/index.php/WARNING_TO_MICROSOFT_OUTLOOK_AND_HOTMAIL_USERS\">see this webpage for how to get registration email.</a> ")?>.</div><br />
 	<br />
 <?
-	switch($reg_open) {
-	case 'notopenyet':
-	        echo i18n("Registration for the %1 %2 has not yet opened",
-				array(	$config['FAIRYEAR'],
-					$config['fairname']),
-					array("Fair year","Fair name")
-			);
-		break;
-	case 'open':
-		echo i18n("If you would like to register as a new {$user_what[$type]}, <a href=\"$new_link\">click here</a>.<br />");
-		break;
-
-	case 'closed':
-                echo i18n("Registration for the %1 %2 is now closed",
-				array(	$config['FAIRYEAR'],
-					$config['fairname']),
-					array("Fair year","Fair name")
-		);
-		break;
-	case 'notpermitted':
-	default:
-		break;
+	switch($reg_open) 
+	{
+			case 'notopenyet':
+	      echo i18n("Registration for the %1 %2 has not yet opened", array(	$config['FAIRYEAR'], 	$config['fairname']), array("Fair year","Fair name")	);
+				break;
+			case 'open':
+				echo i18n("If you would like to register as a new {$user_what[$type]}, <a href=\"$new_link\">click here</a>.<br />");
+				break;
+			case 'closed':
+        echo i18n("Registration for the %1 %2 is now closed", array(	$config['FAIRYEAR'], 	$config['fairname']), array("Fair year","Fair name") 	);
+				break;
+			case 'notpermitted':
+			default:
+			break;
 	}
 
  }
